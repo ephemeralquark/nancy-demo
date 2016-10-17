@@ -24,7 +24,7 @@ namespace NancyDemo.Test
         }
 
         [Fact]
-        public void when_we_request_claims_it_checks_if_we_have_a_valid_session()
+        public void when_we_request_index_it_returns_hello_world()
         {
             browserContext = with =>
             {
@@ -36,6 +36,7 @@ namespace NancyDemo.Test
             browserResponse = browser.Get("/", browserContext);
 
             Assert.Equal(HttpStatusCode.OK, browserResponse.Result.StatusCode);
+            Assert.Equal("Hello World", browserResponse.Result.Body.AsString());
         }
     }
 }
