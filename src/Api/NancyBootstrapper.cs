@@ -1,15 +1,15 @@
 using System;
 using Nancy;
 
-namespace NancyDemo.Web
+namespace Api
 {
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
         public NancyBootstrapper()
         {
-            
+
         }
-        
+
         public NancyBootstrapper(AppConfiguration appConfig)
         {
             /*
@@ -21,5 +21,5 @@ namespace NancyDemo.Web
             Console.WriteLine(appConfig.Smtp.User);
             Console.WriteLine(appConfig.Logging.IncludeScopes);
         }
-    }   
+    }
 }

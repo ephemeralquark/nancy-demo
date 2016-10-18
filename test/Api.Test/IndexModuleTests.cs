@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Nancy;
 using Nancy.Testing;
-using NancyDemo.Web;
+using Api;
 using Xunit;
 
-namespace NancyDemo.Test
+namespace Api.Test
 {
     public class IndexModuleTests
     {
@@ -14,7 +14,7 @@ namespace NancyDemo.Test
 
         private readonly Browser browser;
 
-        
+
         public IndexModuleTests()
         {
             browser = new Browser(config =>

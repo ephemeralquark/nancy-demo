@@ -1,11 +1,11 @@
-namespace NancyDemo.Web
+namespace Api
 {
     public class AppConfiguration
     {
         public Logging Logging { get; set; }
         public Smtp Smtp { get; set; }
     }
-    
+
     public class LogLevel
     {
         public string Default { get; set; }

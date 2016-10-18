@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Nancy.Owin;
 
-namespace NancyDemo.Web
+namespace Api
 {
     public class Startup
     {

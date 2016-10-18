@@ -6,7 +6,7 @@
 
     "dependencies": {
       "Nancy": "2.0.0-barneyrubble",
-      "Nancy.Validation.FluentValidation": "2.0.0-barneyrubble"
+      "Nancy.Validation.FluentValidation": "2.0.0-barneyrubble"   
     },
 
     "frameworks": {
