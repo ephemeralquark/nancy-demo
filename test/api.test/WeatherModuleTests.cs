@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Api.Test
 {
-    public class IndexModuleTests
+    public class WeatherModuleTests
     {
         private Task<BrowserResponse> browserResponse;
         private Action<BrowserContext> browserContext;
@@ -14,16 +14,16 @@ namespace Api.Test
         private readonly Browser browser;
 
 
-        public IndexModuleTests()
+        public WeatherModuleTests()
         {
             browser = new Browser(config =>
             {
-                config.Module<IndexModule>();
+                config.Module<WeatherModule>();
             });
         }
 
         [Fact]
-        public void when_we_request_index_it_returns_hello_world()
+        public void when_we_request_index_it_returns_api_description()
         {
             browserContext = with =>
             {
@@ -35,7 +35,7 @@ namespace Api.Test
             browserResponse = browser.Get("/", browserContext);
 
             Assert.Equal(HttpStatusCode.OK, browserResponse.Result.StatusCode);
-            Assert.Equal("Hello World", browserResponse.Result.Body.AsString());
+            Assert.Equal("current/{zip}", browserResponse.Result.Body.AsString());
         }
     }
 }
