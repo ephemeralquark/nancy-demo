@@ -1,4 +1,8 @@
-﻿{
+{
+  "title": "api",
+  "copyright": "",
+  "description": "",
+  "language": "",
     "buildOptions": {
         "debugType": "portable",
         "emitEntryPoint": true
