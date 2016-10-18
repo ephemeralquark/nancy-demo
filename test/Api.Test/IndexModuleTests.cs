@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Nancy;
 using Nancy.Testing;
-using Api;
 using Xunit;
 
 namespace Api.Test
