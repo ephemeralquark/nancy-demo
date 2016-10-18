@@ -8,6 +8,7 @@
     "xunit": "2.1.0",
     "dotnet-test-xunit": "2.2.0-preview3-build1047",
     "Nancy.Testing": "2.0.0-barneyrubble",
+    "Moq": "4.6.38-alpha",
     "api": "1.0.0-*"
   },
   "testRunner": "xunit",

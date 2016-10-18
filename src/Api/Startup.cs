@@ -1,7 +1,9 @@
+using api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Nancy.Owin;
+using Nancy.TinyIoc;
 
 namespace Api
 {
@@ -20,12 +22,11 @@ namespace Api
 
         public void Configure(IApplicationBuilder app)
         {
-
-            var config = this.Configuration;
             var appConfig = new AppConfiguration();
-            config.Bind(appConfig);
-
-            app.UseOwin(x => x.UseNancy(opt => opt.Bootstrapper = new NancyBootstrapper(appConfig)));
+            Configuration.Bind(appConfig);
+            
+            app.UseOwin(x => x.UseNancy(
+                opt => opt.Bootstrapper = new NancyBootstrapper(appConfig)));
         }
     }
 }
