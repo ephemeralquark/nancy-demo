@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0-*",
   "buildOptions": {
     "debugType": "portable"
@@ -6,7 +6,7 @@
   "dependencies": {
     "System.Runtime.Serialization.Primitives": "4.1.1",
     "xunit": "2.1.0",
-    "dotnet-test-xunit": "1.0.0-rc2*",
+    "dotnet-test-xunit": "2.2.0-preview3-build1047",
     "Nancy.Testing": "2.0.0-barneyrubble",
     "api": "1.0.0-*"
   },
@@ -15,8 +15,8 @@
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.0"
+          "version": "1.0.*",
+          "type": "platform"
         }
       },
       "imports": [
