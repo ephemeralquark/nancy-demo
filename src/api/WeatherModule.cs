@@ -9,9 +9,9 @@ namespace api
     {
         public WeatherModule(IWeatherProvider weatherProvider)
         {
-            Get("/", args => "/{zip}");
+            Get("/", args => "/current/{zip}");
 
-            Get("/{zip}", args =>
+            Get("/current/{zip}", args =>
             {
                 var zip = args["zip"];
                 try

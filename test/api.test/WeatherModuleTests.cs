@@ -40,7 +40,7 @@ namespace api.test
             });
 
             Assert.Equal(HttpStatusCode.OK, browserResponse.Result.StatusCode);
-            Assert.Equal("/{zip}", browserResponse.Result.Body.AsString());
+            Assert.Equal("/current/{zip}", browserResponse.Result.Body.AsString());
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace api.test
             };
             mockWeatherProvider.Setup(mwp => mwp.GetCurrent(12345)).Returns(weatherResponse);
 
-            browserResponse = browser.Get("/12345", with =>
+            browserResponse = browser.Get("/current/12345", with =>
             {
                 with.HttpRequest();
                 with.Header("Content-Type", "application/json");
@@ -73,7 +73,7 @@ namespace api.test
                 .Setup(mwp => mwp.GetCurrent(12345))
                 .Throws(new CommunicationException());
             
-            browserResponse = browser.Get("/12345", with =>
+            browserResponse = browser.Get("/current/12345", with =>
             {
                 with.HttpRequest();
                 with.Header("Content-Type", "application/json");
