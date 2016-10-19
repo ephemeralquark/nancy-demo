@@ -1,9 +1,8 @@
 using System.Text;
-using api;
 using Nancy;
 using Newtonsoft.Json;
 
-namespace Api
+namespace api
 {
     public sealed class WeatherModule : NancyModule
     {
