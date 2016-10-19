@@ -1,3 +1,4 @@
+using System.ServiceModel;
 using System.Text;
 using Nancy;
 using Newtonsoft.Json;
@@ -13,15 +14,29 @@ namespace api
             Get("/{zip}", args =>
             {
                 var zip = args["zip"];
-                var serializedWeather = JsonConvert.SerializeObject(weatherProvider.GetCurrent(zip));
-                var weatherBytes = Encoding.UTF8.GetBytes(serializedWeather);
-
-                return new Response
+                try
                 {
-                    StatusCode = HttpStatusCode.Found,
-                    ContentType = "application/json",
-                    Contents = s => s.Write(weatherBytes, 0, weatherBytes.Length)
-                };
+                    var serializedWeather = JsonConvert.SerializeObject(weatherProvider.GetCurrent(zip));
+                    var weatherBytes = Encoding.UTF8.GetBytes(serializedWeather);
+
+                    return new Response
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        ContentType = "application/json",
+                        Contents = s => s.Write(weatherBytes, 0, weatherBytes.Length)
+                    };
+                }
+                catch (CommunicationException e)
+                {
+                    var exceptionMessageBytes =  Encoding.UTF8.GetBytes(e.Message);
+
+                    return new Response
+                    {
+                        StatusCode = HttpStatusCode.ServiceUnavailable,
+                        ContentType = "application/json",
+                        Contents = s => s.Write(exceptionMessageBytes, 0, exceptionMessageBytes.Length)
+                    };
+                }
             });
         }
     }

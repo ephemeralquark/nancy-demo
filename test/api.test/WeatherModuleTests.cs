@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using Moq;
 using Nancy;
@@ -47,7 +48,7 @@ namespace api.test
         {
             var weatherResponse = new Weather
             {
-                Temperature = (decimal) 98.6,
+                Temperature = (decimal)98.6,
                 RelativeHumidity = 50
             };
             mockWeatherProvider.Setup(mwp => mwp.GetCurrent(12345)).Returns(weatherResponse);
@@ -59,10 +60,27 @@ namespace api.test
                 with.Header("Accept", "application/json");
             });
 
-            mockWeatherProvider.Verify(mwp => mwp.GetCurrent(12345));            
+            mockWeatherProvider.Verify(mwp => mwp.GetCurrent(12345));
             Assert.Equal(JsonConvert.SerializeObject(weatherResponse), browserResponse.Result.Body.AsString());
-            Assert.Equal(HttpStatusCode.Found, browserResponse.Result.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, browserResponse.Result.StatusCode);
             Assert.Equal("application/json", browserResponse.Result.ContentType);
+        }
+
+        [Fact]
+        public void handles_communication_exception_from_weather_provider()
+        {
+            mockWeatherProvider
+                .Setup(mwp => mwp.GetCurrent(12345))
+                .Throws(new CommunicationException());
+            
+            browserResponse = browser.Get("/12345", with =>
+            {
+                with.HttpRequest();
+                with.Header("Content-Type", "application/json");
+                with.Header("Accept", "application/json");
+            });
+
+            Assert.Equal(HttpStatusCode.ServiceUnavailable, browserResponse.Result.StatusCode);
         }
     }
 }
