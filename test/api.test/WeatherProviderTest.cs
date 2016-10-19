@@ -1,3 +1,5 @@
+using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using api;
 using Moq;
@@ -40,6 +42,19 @@ namespace Api.Test
             var weather = subject.GetCurrent(12345);
 
             Assert.Equal((decimal) 99.1, weather.Temperature);
+        }
+
+        [Fact]
+        public void catches_and_throws_error_when_cdyne_fails()
+        {
+            mockWeatherSoapService
+                .Setup(mwss => mwss.GetCityWeatherByZIPAsync(It.IsAny<GetCityWeatherByZIPRequest>()))
+                .Throws<Exception>();
+
+
+            var exception = Assert.Throws<CommunicationException>(() => subject.GetCurrent(12345));
+
+            Assert.Equal("CDYNE failed to retrieve resource", exception.Message);
         }
     }
 }

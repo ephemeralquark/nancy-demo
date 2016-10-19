@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.ServiceModel;
 using WeatherWS;
 
 namespace api
@@ -23,12 +23,18 @@ namespace api
                 }
             };
 
-            var weatherServiceReturn = weatherSoap.GetCityWeatherByZIPAsync(getWeatherRequest).Result;
-
-            return new Weather
+            try
             {
-                Temperature = Convert.ToDecimal(weatherServiceReturn.Body.GetCityWeatherByZIPResult.Temperature)
-            };
+                var weatherServiceReturn = weatherSoap.GetCityWeatherByZIPAsync(getWeatherRequest).Result;
+                return new Weather
+                {
+                    Temperature = Convert.ToDecimal(weatherServiceReturn.Body.GetCityWeatherByZIPResult.Temperature)
+                };
+            }
+            catch (Exception e)
+            {
+                throw new CommunicationException("CDYNE failed to retrieve resource", e);
+            }
         }
     }
 }
