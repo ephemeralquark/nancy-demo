@@ -1,12 +1,11 @@
 using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
-using api;
 using Moq;
 using WeatherWS;
 using Xunit;
 
-namespace Api.Test
+namespace api.test
 {
     public class WeatherProviderTest
     {

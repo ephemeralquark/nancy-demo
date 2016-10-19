@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using api;
 using Moq;
 using Nancy;
 using Nancy.Testing;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Api.Test
+namespace api.test
 {
     public class WeatherModuleTests
     {
