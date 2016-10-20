@@ -1,0 +1,6 @@
+---
+applications:
+- name: weather
+  disk_quota: 1536M
+  memory: 512M
+  instances: 1

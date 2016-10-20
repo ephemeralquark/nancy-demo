@@ -3,38 +3,40 @@
   "copyright": "",
   "description": "",
   "language": "",
-    "buildOptions": {
-        "debugType": "portable",
-        "emitEntryPoint": true
-    },
-
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true,
+    "copyToOutput": {
+      "include": [
+        "appsettings.json"
+      ]
+    }
+  },
   "dependencies": {
     "Nancy": "2.0.0-barneyrubble",
-    "Nancy.Validation.FluentValidation": "2.0.0-barneyrubble"
-  },
-
-    "frameworks": {
-        "netcoreapp1.0": {
-          "dependencies": {
-            "Microsoft.AspNetCore.Hosting": "1.0.*",
-            "Microsoft.AspNetCore.Server.Kestrel": "1.0.*",
-            "Microsoft.AspNetCore.Owin": "1.0.0",
-            "Microsoft.Extensions.Configuration.Binder": "1.0.0",
-            "Microsoft.Extensions.Configuration.Json": "1.0.0",
-            "System.ServiceModel.Duplex": "4.0.1",
-            "System.ServiceModel.Http": "4.1.0",
-            "System.ServiceModel.NetTcp": "4.1.0",
-            "System.ServiceModel.Security": "4.0.1",
-            "System.Xml.XmlSerializer": "4.0.11",
-            "Microsoft.NETCore.App": {
-              "type": "platform",
-              "version": "1.0.*"
-            }
-          },
-             "imports": [
-                "dotnet54",
-                "portable-net451+win8"
-            ]
-        }
+    "Nancy.Validation.FluentValidation": "2.0.0-barneyrubble",
+    "Microsoft.AspNetCore.Hosting": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
+    "Microsoft.AspNetCore.Owin": "1.0.0",
+    "Microsoft.Extensions.Configuration.Binder": "1.0.0",
+    "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "System.ServiceModel.Duplex": "4.0.1",
+    "System.ServiceModel.Http": "4.1.0",
+    "System.ServiceModel.NetTcp": "4.1.0",
+    "System.ServiceModel.Security": "4.0.1",
+    "System.Xml.XmlSerializer": "4.0.11",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
     }
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet54",
+        "portable-net451+win8"
+      ]
+    }
+  }
 }

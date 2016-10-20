@@ -1,11 +1,9 @@
-using api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Nancy.Owin;
-using Nancy.TinyIoc;
 
-namespace Api
+namespace api
 {
     public class Startup
     {
@@ -14,16 +12,16 @@ namespace Api
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                              .AddJsonFile("appsettings.json")
-                              .SetBasePath(env.ContentRootPath);
+                              .AddJsonFile("appsettings.json");
 
             Configuration = builder.Build();
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            var config = this.Configuration;
             var appConfig = new AppConfiguration();
-            Configuration.Bind(appConfig);
+            ConfigurationBinder.Bind(config, appConfig);
             
             app.UseOwin(x => x.UseNancy(
                 opt => opt.Bootstrapper = new NancyBootstrapper(appConfig)));

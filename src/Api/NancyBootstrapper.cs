@@ -1,10 +1,9 @@
 using System;
-using api;
 using Nancy;
 using Nancy.TinyIoc;
 using WeatherWS;
 
-namespace Api
+namespace api
 {
     public class NancyBootstrapper : DefaultNancyBootstrapper
     {
