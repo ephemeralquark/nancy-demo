@@ -1,3 +1,4 @@
+using System;
 using System.ServiceModel;
 using System.Text;
 using Nancy;
@@ -9,7 +10,9 @@ namespace api
     {
         public WeatherModule(IWeatherProvider weatherProvider)
         {
-            Get("/", args => "/current/{zip}");
+            Get("/", _ => {
+                return "/current/{zip}";
+            });
 
             Get("/current/{zip}", args =>
             {

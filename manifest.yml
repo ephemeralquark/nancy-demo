@@ -4,3 +4,8 @@ applications:
   disk_quota: 1536M
   memory: 512M
   instances: 1
+  buildpack: dotnet_core_buildpack
+  Stack: cflinuxfs2
+  command: dotnet run --project src/api --server.urls http://0.0.0.0:$PORT --configuration Release
+  env:
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
